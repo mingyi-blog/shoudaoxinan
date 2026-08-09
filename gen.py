@@ -8,6 +8,15 @@ SITE = {
     "sub": "以手法疗身，以经教养心",
     "author": "明一",
     "footer": "手到心安 · 旺存理疗馆　|　文章内容仅供参考，具体身体问题请当面咨询专业人士",
+    # 媒体矩阵（把 url / handle 换成你真实的账号；保留 # 表示暂未配置）
+    "social": [
+        {"name": "抖音",   "handle": "@liuwangcun888",   "url": "https://www.douyin.com/user/MS4wLjABAAAA"},
+        {"name": "视频号", "handle": "旺存理疗分享",     "url": "#"},
+        {"name": "公众号", "handle": "待配置",           "url": "#"},
+        {"name": "小红书", "handle": "待配置",           "url": "#"},
+    ],
+    # 私域 CTA
+    "wechat": "微信号：xingjue9643（旺存理疗）",
 }
 
 # 7 篇文章（顺序即首页展示顺序，最新在前）
@@ -276,10 +285,22 @@ POST_TEMPLATE = """<!doctype html>
   <article class="article-body">
     {content}
     <div class="tags">{tags_html}</div>
+    <div class="share-bar">
+      <span class="share-tip">觉得有用，分享给需要的人：</span>
+      <button class="share-btn" data-share="weibo">微博</button>
+      <button class="share-btn" data-share="qq">QQ</button>
+      <button class="share-btn" data-share="weixin">微信</button>
+      <button class="share-btn" data-share="pyq">朋友圈</button>
+      <button class="share-btn" data-share="copy">复制链接</button>
+    </div>
+    <div class="wx-qr" id="wx-qr" hidden></div>
+    {follow_block}
+    {cta_block}
     <a class="back-home" href="../">← 返回首页</a>
   </article>
 </main>
 <footer class="site-footer">{footer}</footer>
+<script src="../assets/share.js"></script>
 </body>
 </html>
 """
@@ -302,6 +323,8 @@ INDEX_TEMPLATE = """<!doctype html>
 <main class="wrap post-list">
 {cards}
 </main>
+{follow_block}
+{cta_block}
 <footer class="site-footer">{footer}</footer>
 </body>
 </html>
@@ -314,6 +337,28 @@ def tags_html(tags):
 
 def gen():
     os.makedirs(os.path.join(BASE, "posts"), exist_ok=True)
+
+    # 媒体矩阵 + 私域 CTA 区块（首页与文章页共用）
+    social_html = "".join(
+        '<a class="social-link" href="{url}" target="_blank" rel="noopener">{name}<span>{handle}</span></a>'.format(
+            url=s["url"], name=s["name"], handle=s["handle"]
+        )
+        for s in SITE["social"]
+    )
+    follow_block = (
+        '<section class="follow-box">'
+        '<h3 class="box-title">关注我，手法与修行常更常新</h3>'
+        '<div class="social-list">' + social_html + '</div>'
+        '</section>'
+    )
+    cta_block = (
+        '<section class="cta-box">'
+        '<h3 class="box-title">想私下聊聊身体？加我微信</h3>'
+        '<p class="cta-text">{wechat}</p>'
+        '<p class="cta-note">肩颈腰腿、术后舒缓、糖尿病调理，都可以先问一句。</p>'
+        '</section>'
+    ).format(wechat=SITE["wechat"])
+
     # 文章页
     for p in posts:
         html = POST_TEMPLATE.format(
@@ -323,6 +368,8 @@ def gen():
             author=SITE["author"],
             content=p["content"],
             tags_html=tags_html(p["tags"]),
+            follow_block=follow_block,
+            cta_block=cta_block,
             footer=SITE["footer"],
         )
         with open(os.path.join(BASE, "posts", p["slug"] + ".html"), "w", encoding="utf-8") as f:
@@ -344,7 +391,9 @@ def gen():
             reading=p["reading"],
             tags="、".join(p["tags"]),
         )
-    index_html = INDEX_TEMPLATE.format(cards=cards, footer=SITE["footer"])
+    index_html = INDEX_TEMPLATE.format(
+        cards=cards, follow_block=follow_block, cta_block=cta_block, footer=SITE["footer"]
+    )
     with open(os.path.join(BASE, "index.html"), "w", encoding="utf-8") as f:
         f.write(index_html)
     print("generated:", len(posts), "posts + index.html")
