@@ -143,6 +143,94 @@ a:hover { color: var(--accent-soft); text-decoration: underline; }
   letter-spacing: .5px;
 }
 
+/* ---------- 分享栏 ---------- */
+.share-bar {
+  margin: 26px 0 10px;
+  padding: 14px 16px;
+  background: #f4efe4;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.share-tip { font-size: 14px; color: var(--ink-soft); margin-right: 6px; }
+.share-btn {
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--accent);
+  background: var(--bg-card);
+  border: 1px solid var(--accent-soft);
+  border-radius: 18px;
+  padding: 5px 14px;
+  margin: 4px 4px 0 0;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.share-btn:hover { background: var(--accent); color: #fff; }
+.wx-qr {
+  margin: 12px 0 4px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.wx-qr img { display: block; margin: 8px auto 0; border-radius: 6px; }
+
+/* ---------- 关注引导 / 私域 CTA ---------- */
+.follow-box, .cta-box {
+  margin: 46px 0 0;
+  padding: 26px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.box-title {
+  font-size: 18px;
+  color: var(--ink);
+  margin: 0 0 16px;
+  letter-spacing: 1px;
+}
+.social-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.social-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 92px;
+  padding: 12px 14px;
+  background: #f4efe4;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.social-link span {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+.social-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
+.social-link:hover span { color: rgba(255,255,255,.8); }
+.cta-text {
+  font-size: 16px;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+.cta-note {
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
 /* ---------- 响应式 ---------- */
 @media (max-width: 600px) {
   body { font-size: 16.5px; }
@@ -151,4 +239,34 @@ a:hover { color: var(--accent-soft); text-decoration: underline; }
   .article-header h1 { font-size: 23px; }
   .post-card { padding: 20px 20px; }
   .article-body { font-size: 16.5px; }
+  .social-link { min-width: 76px; padding: 10px; }
 }
+
+/* ---------- 相关阅读 / 大家还问 ---------- */
+.rel-box, .faq-box {
+  margin: 46px 0 0;
+  padding: 24px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.rel-list { display: flex; flex-direction: column; gap: 10px; }
+.rel-link {
+  display: block;
+  padding: 12px 16px;
+  background: #f4efe4;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-size: 15.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.rel-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
+.faq-item {
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: var(--ink); }
+.faq-a { margin: 0; font-size: 15px; color: var(--ink-soft); }
