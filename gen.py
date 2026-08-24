@@ -17,8 +17,8 @@ SITE = {
         {"name": "公众号", "handle": "待配置",           "url": "#"},
         {"name": "小红书", "handle": "待配置",           "url": "#"},
     ],
-    # 私域 CTA
-    "wechat": "微信号：xingjue9643（旺存理疗）",
+    # 私域 CTA（合规：公域不写裸微信号，仅引导至公众号/小红书私信）
+    "wechat": "在公众号「手到心安」或小红书搜「旺存理疗」，关注后私信说一声，我看到都回。",
 }
 
 # 文章数据：从 posts_data.json 读取（数据归数据，代码不硬编码文章）。
@@ -142,11 +142,11 @@ def gen():
     )
     cta_block = (
         '<section class="cta-box">'
-        '<h3 class="box-title">想私下聊聊身体？加我微信</h3>'
-        '<p class="cta-text">{wechat}</p>'
+        '<h3 class="box-title">想私下聊聊身体？关注公众号或小红书私信我</h3>'
+        '<p class="cta-text">在公众号「手到心安」或小红书搜「旺存理疗」，关注后私信说一声，我看到都回。咱们慢慢调。</p>'
         '<p class="cta-note">肩颈腰腿、术后舒缓、糖尿病调理，都可以先问一句。</p>'
         '</section>'
-    ).format(wechat=SITE["wechat"])
+    )
 
     # slug -> title 映射，供相关阅读使用
     slug_title = {p["slug"]: p["title"] for p in posts}
