@@ -14,11 +14,11 @@ SITE = {
     "social": [
         {"name": "抖音",   "handle": "@liuwangcun888",   "url": "https://www.douyin.com/user/MS4wLjABAAAA"},
         {"name": "视频号", "handle": "旺存理疗分享",     "url": "#"},
-        {"name": "公众号", "handle": "待配置",           "url": "#"},
+        {"name": "公众号", "handle": "旺存",            "url": "#"},
         {"name": "小红书", "handle": "待配置",           "url": "#"},
     ],
     # 私域 CTA（合规：公域不写裸微信号，仅引导至公众号/小红书私信）
-    "wechat": "在公众号「手到心安」或小红书搜「旺存理疗」，关注后私信说一声，我看到都回。",
+    "wechat": "在公众号「旺存」或小红书搜「旺存理疗」，关注后私信说一声，我看到都回。",
 }
 
 # 文章数据：从 posts_data.json 读取（数据归数据，代码不硬编码文章）。
@@ -143,7 +143,7 @@ def gen():
     cta_block = (
         '<section class="cta-box">'
         '<h3 class="box-title">想私下聊聊身体？关注公众号或小红书私信我</h3>'
-        '<p class="cta-text">在公众号「手到心安」或小红书搜「旺存理疗」，关注后私信说一声，我看到都回。咱们慢慢调。</p>'
+        '<p class="cta-text">在公众号「旺存」或小红书搜「旺存理疗」，关注后私信说一声，我看到都回。咱们慢慢调。</p>'
         '<p class="cta-note">肩颈腰腿、术后舒缓、糖尿病调理，都可以先问一句。</p>'
         '</section>'
     )
