@@ -93,10 +93,10 @@ INDEX_TEMPLATE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>手到心安 · 理疗与康养手记</title>
-<meta name="description" content="手到心安是旺存理疗的康养手记，分享肩颈腰腿疼痛调理、节气养生、术后舒缓与糖尿病调理手法，附穴位与日常养护，仅供参考。">
+<meta name="description" content="手到心安是旺存理疗的康养手记，分享肩颈腰腿疼痛调理、节气养生、术后舒缓手法，附穴位与日常养护，仅供参考。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="手到心安 · 理疗与康养手记">
-<meta property="og:description" content="旺存理疗的康养手记：肩颈腰腿疼痛调理、节气养生、术后舒缓与糖尿病调理手法，附穴位与日常养护。">
+<meta property="og:description" content="旺存理疗的康养手记：肩颈腰腿疼痛调理、节气养生、术后舒缓手法，附穴位与日常养护。">
 <meta property="og:url" content="{site_url}/">
 <meta property="og:site_name" content="手到心安">
 <meta name="twitter:card" content="summary">
@@ -144,7 +144,7 @@ def gen():
         '<section class="cta-box">'
         '<h3 class="box-title">想私下聊聊身体？关注公众号或小红书私信我</h3>'
         '<p class="cta-text">在公众号「旺存」或小红书搜「旺存理疗」，关注后私信说一声，我看到都回。咱们慢慢调。</p>'
-        '<p class="cta-note">肩颈腰腿、术后舒缓、糖尿病调理，都可以先问一句。</p>'
+        '<p class="cta-note">肩颈腰腿、术后舒缓，都可以先问一句。</p>'
         '</section>'
     )
 
