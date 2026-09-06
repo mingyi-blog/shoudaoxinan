@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>子女尽孝 AI 工具包·大字版 | 元枢出品</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; color: #1a1a2e; background: #f6f7fb; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 740px; margin: 0 auto; padding: 0 18px; }
+  header { background: linear-gradient(135deg, #232544, #4a4e69); color: #fff; padding: 60px 20px 52px; text-align: center; }
+  header .tag { font-size: 12px; letter-spacing: 3px; opacity: .75; }
+  header h1 { font-size: 30px; margin: 14px 0 12px; font-weight: 800; letter-spacing: -.5px; }
+  header p { font-size: 15px; opacity: .9; }
+  .badge { display: inline-block; margin-top: 18px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); padding: 6px 16px; border-radius: 999px; font-size: 13px; }
+  .section { background: #fff; border-radius: 16px; padding: 30px 24px; margin: 18px 0; box-shadow: 0 2px 16px rgba(30,30,60,.05); }
+  .section h2 { font-size: 20px; margin-bottom: 16px; color: #232544; }
+  .pain { display: flex; gap: 10px; align-items: flex-start; margin: 9px 0; font-size: 14px; color: #444; }
+  .pain::before { content: "·"; color: #ef6461; font-weight: 800; font-size: 18px; line-height: 1.2; }
+  .scene { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .scene div { background: #f3f4f8; border-radius: 10px; padding: 13px; font-size: 13px; color: #444; }
+  .scene b { color: #4a4e69; }
+  .note { font-size: 13px; color: #888; margin-top: 14px; }
+  .trust { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; text-align: center; }
+  .trust div { background: #f7f8fc; border-radius: 10px; padding: 14px 8px; }
+  .trust .k { font-size: 20px; font-weight: 800; color: #2a9d8f; }
+  .trust .v { font-size: 12px; color: #666; margin-top: 4px; }
+  .price { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .tier { border: 1.5px solid #e6e8f0; border-radius: 14px; padding: 20px 12px; text-align: center; display: flex; flex-direction: column; }
+  .tier.best { border-color: #ef6461; box-shadow: 0 6px 22px rgba(239,100,97,.16); }
+  .tier .name { font-weight: 700; font-size: 15px; color: #232544; }
+  .tier .num { font-size: 27px; font-weight: 800; color: #ef6461; margin: 8px 0 2px; }
+  .tier .num small { font-size: 12px; color: #999; font-weight: 400; }
+  .tier .sub { font-size: 11px; color: #aaa; min-height: 16px; }
+  .tier ul { list-style: none; font-size: 12px; color: #555; text-align: left; margin: 10px 0 14px; flex: 1; }
+  .tier li { margin: 6px 0; padding-left: 16px; position: relative; }
+  .tier li::before { content: "✓"; position: absolute; left: 0; color: #2a9d8f; font-weight: 700; }
+  .cta { display: block; background: #ef6461; color: #fff; text-align: center; padding: 13px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; margin-top: auto; }
+  .cta.ghost { background: #232544; }
+  .cta.plain { background: #f0f1f6; color: #232544; }
+  .lead { background: #232544; color: #fff; }
+  .lead h2 { color: #fff; }
+  .lead p { font-size: 14px; opacity: .9; }
+  .lead form { display: flex; gap: 8px; margin-top: 14px; }
+  .lead input { flex: 1; padding: 13px; border: none; border-radius: 9px; font-size: 14px; }
+  .lead button { background: #ef6461; color: #fff; border: none; padding: 0 22px; border-radius: 9px; font-weight: 700; cursor: pointer; }
+  .lead .free { margin-top: 16px; }
+  .faq { font-size: 13px; color: #555; }
+  .faq dt { font-weight: 700; color: #232544; margin-top: 12px; }
+  .faq dd { margin-top: 4px; color: #666; }
+  footer { font-size: 12px; color: #9aa; text-align: center; padding: 26px 18px; line-height: 1.9; }
+  .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:99; align-items:center; justify-content:center; padding:18px; }
+  .modal.show { display:flex; }
+  .modal-box { background:#fff; border-radius:18px; max-width:380px; width:100%; padding:26px; text-align:center; position:relative; }
+  .modal-box img { width:220px; height:220px; margin:14px auto; display:block; border-radius:12px; }
+  .modal-box h3 { font-size:18px; color:#232544; }
+  .modal-box .amount { font-size:34px; font-weight:800; color:#ef6461; margin:8px 0; }
+  .modal-box p { font-size:13px; color:#555; margin:8px 0; line-height:1.6; }
+  .modal-box .steps { background:#f7f8fc; border-radius:10px; padding:12px; text-align:left; font-size:12px; color:#444; margin:14px 0; list-style:none; }
+  .modal-box .steps li { margin:6px 0; padding-left:18px; position:relative; }
+  .modal-box .steps li::before { content:"①"; position:absolute; left:0; color:#ef6461; font-weight:700; }
+  .modal-box .steps li:nth-child(2)::before { content:"②"; }
+  .modal-box .steps li:nth-child(3)::before { content:"③"; }
+  .modal-close { position:absolute; top:12px; right:16px; font-size:22px; color:#999; cursor:pointer; line-height:1; }
+  @media (max-width: 560px) {
+    .scene, .price, .trust { grid-template-columns: 1fr; }
+    .lead form { flex-direction: column; }
+    .lead button { padding: 13px; }
+    .modal-box img { width:180px; height:180px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">元枢 · 数字适老被动收益产品</div>
+  <h1>子女尽孝 AI 工具包·大字版</h1>
+  <p>用国内免费 AI，10 分钟帮爸妈解决 6 件最烦心的日常事</p>
+  <div class="badge">一次购买 · 永久使用 · 原创合规 · 零平台依赖</div>
+</header>
+
+<div class="wrap">
+
+  <div class="section">
+    <h2>你是不是也这样？</h2>
+    <div class="pain">爸妈的老照片泛黄模糊，想修不会修</div>
+    <div class="pain">药品说明书字太小，看不懂也不敢问</div>
+    <div class="pain">想教他们用手机 App，讲了三遍还是忘</div>
+    <div class="pain">收到诈骗短信，怕他们上当又不在身边</div>
+  </div>
+
+  <div class="section">
+    <h2>这本手册能帮你做什么</h2>
+    <div class="scene">
+      <div><b>① 老照片修复上色</b><br>即用梦 AI 把旧照变清晰彩色</div>
+      <div><b>② 说明书大字版</b><br>药盒贴一张，一眼看清</div>
+      <div><b>③ 代写说不清的事</b><br>给医生/社区的话 AI 整理</div>
+      <div><b>④ 诈骗识别</b><br>可疑短信丢给 AI 辨破绽</div>
+      <div><b>⑤ 方言转文字</b><br>家乡话也能发清楚消息</div>
+      <div><b>⑥ 步步截图教程</b><br>挂号打车买菜照着点</div>
+    </div>
+    <p class="note">全部使用国内合规免费工具（豆包 / 通义 / DeepSeek / 即梦 / 腾讯 ARC 等），无需翻墙、无需付费。每个场景含：痛点 → 用哪个 AI → 三步操作 → 给爸妈的话术。</p>
+  </div>
+
+  <div class="section">
+    <h2>为什么值得信</h2>
+    <div class="trust">
+      <div><div class="k">100%</div><div class="v">原创内容<br>非拼凑搬运</div></div>
+      <div><div class="k">6 场景</div><div class="v">覆盖最高频<br>尽孝烦恼</div></div>
+      <div><div class="k">0 元</div><div class="v">工具全免费<br>不绑会员</div></div>
+    </div>
+    <p class="note">需求侧已验证：50 岁以上 AI 月活一年翻 20 倍，小红书 60+ 月活超 3000 万。本产品定位「帮子女尽孝」，不碰医疗诊断、不承诺效果。</p>
+  </div>
+
+  <div class="section">
+    <h2>分层定价（一次买断 + 年度会员双轨）</h2>
+    <div class="price">
+      <div class="tier">
+        <div class="name">基础版</div>
+        <div class="num">¥39</div>
+        <div class="sub">一次买断</div>
+        <ul>
+          <li>大字版 PDF（6 场景）</li>
+          <li>手机即可阅读</li>
+        </ul>
+        <a class="cta plain" data-tier="basic" href="#">购买基础版</a>
+      </div>
+      <div class="tier best">
+        <div class="name">标准版 · 推荐</div>
+        <div class="num">¥99</div>
+        <div class="sub">一次买断</div>
+        <ul>
+          <li>基础版全部内容</li>
+          <li>可编辑模板（Word）</li>
+          <li>视频步骤卡 6 张</li>
+        </ul>
+        <a class="cta" data-tier="standard" href="#">购买标准版</a>
+      </div>
+      <div class="tier">
+        <div class="name">尊享会员</div>
+        <div class="num">¥199<small>/年</small></div>
+        <div class="sub">订阅续费 · 真被动</div>
+        <ul>
+          <li>标准版全部内容</li>
+          <li>季度内容更新</li>
+          <li>新场景优先发布</li>
+          <li>私域答疑群席位</li>
+        </ul>
+        <a class="cta ghost" data-tier="vip" href="#">开通会员</a>
+      </div>
+    </div>
+    <p class="note" style="text-align:center;margin-top:12px;">主力档 ¥99 —— 一份外卖钱，换一份随时能用的尽孝工具。会员档让收益按月续费，管道越走越轻。</p>
+  </div>
+
+  <div class="section" style="background:#fbf7f0;border:1.5px dashed #ef6461;">
+    <h2>微信付款指引（标准版 ¥99）</h2>
+    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
+      <img src="wechat-pay-qr.jpg" alt="元枢认知差微信收款码" style="width:200px;height:200px;border-radius:12px;border:1px solid #e6e8f0;">
+      <div style="font-size:14px;color:#444;flex:1;min-width:220px;line-height:1.9;">
+        <p><b>三档金额：</b>基础版 ¥39 ｜ 标准版 <b style="color:#ef6461;font-size:16px;">¥99</b> ｜ 尊享会员 ¥199/年</p>
+        <p>① 微信扫左侧码付款，<b>备注你的邮箱</b>（用于收货）；</p>
+        <p>② 忘记备注？把付款截图 + 邮箱发到 <b>gnfc3671@agent.qq.com</b>；</p>
+        <p>③ 元枢 12h 内把产品包（PDF / Word / 步骤卡）发你邮箱。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section lead">
+    <h2>先领一章免费样章</h2>
+    <p>不填邮箱也能看：直接打开《场景 1·老照片修复》完整版，感受一下值不值。</p>
+    <div class="free"><a class="cta" href="sample.html" target="_blank">📖 立即读免费样章</a></div>
+    <p style="margin-top:18px;opacity:.85;">想第一时间收到后续产品（养老政策红利包 / 适老工具更新）？留个邮箱，进我们的私域列表：</p>
+    <form id="leadForm">
+      <input type="email" name="email" placeholder="输入您的邮箱" required>
+      <button type="submit">订阅</button>
+    </form>
+    <p id="leadMsg" style="font-size:13px;margin-top:8px;min-height:18px;opacity:.9;"></p>
+  </div>
+
+  <div class="section">
+    <h2>常见问题</h2>
+    <dl class="faq">
+      <dt>需要会 AI 吗？</dt>
+      <dd>不需要。每一步都是「打开 App → 上传 → 等结果」，照着点就行。</dd>
+      <dt>工具要花钱吗？</dt>
+      <dd>手册里列的全是国内免费合规工具，不绑任何会员。</dd>
+      <dt>买了之后能更新吗？</dt>
+      <dd>标准版随手册小修免费更新；尊享会员享季度大更新。</dd>
+      <dt>能退款吗？</dt>
+      <dd>数字产品一经交付不支持退款，免费样章已让你先验货，请确认需要再购买。</dd>
+    </dl>
+  </div>
+
+  <footer>
+    元枢出品 · 数字适老被动收益产品 · 与旺存理疗/设计接单业务完全隔离<br>
+    内容版权归元枢所有，仅供购买者本人使用，禁止转售或二次分发<br>
+    工具名称以各平台当前版本为准；本产品不承诺任何效果数字，数据口径以官方公告为准
+  </footer>
+</div>
+
+<!-- 微信支付弹窗 -->
+<div id="payModal" class="modal">
+  <div class="modal-box">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <h3 id="modalTitle">购买</h3>
+    <div class="amount" id="modalAmount">¥99</div>
+    <img id="modalQr" src="wechat-pay-qr.jpg" alt="微信收款码">
+    <ol class="steps">
+      <li>用微信扫上方二维码付款；</li>
+      <li>付款时请在<b>备注</b>里填写你的邮箱（用于收货）；</li>
+      <li>如忘记备注，把付款截图 + 邮箱发到 <b>gnfc3671@agent.qq.com</b>，元枢 12h 内手动发货。</li>
+    </ol>
+    <p style="font-size:11px;color:#999;">收款方：元枢认知差。数字产品一经交付不支持退款，免费样章已可先行查看。</p>
+  </div>
+</div>
+
+<script>
+  // ====== 配置区：上线前只需改这里 ======
+  const CONFIG = {
+    // 收口邮箱（mailto 兜底用）：订阅表单会唤起邮件客户端，把订阅信发到这个地址。
+    // 推荐填 agent-mail 收件地址（WorkBuddy 已连通，元枢能直接在对话框看到列表），或你常用邮箱。
+    subscribeEmail: "gnfc3671@agent.qq.com",  // agent-mail 已连通，元枢可在 WorkBuddy 直接读订阅列表（零依赖、零注册）
+    // 可选端点：若你有 Formspree / Getform / Cloudflare Worker 端点，填这里，表单优先走 AJAX 自动落库。
+    // 留空则走 mailto 兜底——零依赖、零注册、立刻可用。
+    endpoint: "",
+    // 支付：当前使用微信个人收款码（半自动）。用户扫码付款后需备注邮箱或发截图到 supportEmail 对账发货。
+    // 如需全自动，后续可接入 Stripe / 微信商户号 / 小报童等带回调的支付方式。
+    wechatQr: "wechat-pay-qr.jpg",
+    supportEmail: "gnfc3671@agent.qq.com",
+    tiers: {
+      basic:   { name: "基础版", amount: "¥39" },
+      standard:{ name: "标准版", amount: "¥99" },
+      vip:     { name: "尊享会员", amount: "¥199/年" }
+    }
+  };
+
+  // 收口：双通道（endpoint 优先 / mailto 兜底）
+  const form = document.getElementById('leadForm');
+  const msg = document.getElementById('leadMsg');
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const email = form.email.value.trim();
+    if (!email) { msg.textContent = '请先填邮箱再订阅。'; return; }
+    if (CONFIG.endpoint) {
+      const btn = form.querySelector('button');
+      btn.disabled = true; btn.textContent = '提交中…';
+      try {
+        const res = await fetch(CONFIG.endpoint, {
+          method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }
+        });
+        msg.textContent = res.ok ? '已收到！后续产品第一时间发你 📩' : '提交没成功，请稍后再试或手动发邮件到：' + CONFIG.subscribeEmail;
+      } catch (err) {
+        msg.textContent = '网络异常，请用下方邮件方式手动订阅：' + CONFIG.subscribeEmail;
+      } finally { btn.disabled = false; btn.textContent = '订阅'; }
+    } else {
+      // mailto 兜底：零依赖、零注册、立刻能收人
+      const subject = encodeURIComponent('订阅·子女尽孝AI工具包');
+      const body = encodeURIComponent('我想订阅「子女尽孝 AI 工具包」后续更新。\n我的邮箱：' + email);
+      window.location.href = 'mailto:' + CONFIG.subscribeEmail + '?subject=' + subject + '&body=' + body;
+      msg.innerHTML = '已为你打开邮件 App，点「发送」即进列表 📩<br>若没跳出，请手动发到：<b>' + CONFIG.subscribeEmail + '</b>';
+    }
+  });
+
+  // 支付：弹窗展示微信收款码
+  const modal = document.getElementById('payModal');
+  function openModal(tier) {
+    const cfg = CONFIG.tiers[tier] || CONFIG.tiers.standard;
+    document.getElementById('modalTitle').textContent = '购买 ' + cfg.name;
+    document.getElementById('modalAmount').textContent = cfg.amount;
+    document.getElementById('modalQr').src = CONFIG.wechatQr;
+    modal.classList.add('show');
+  }
+  function closeModal() { modal.classList.remove('show'); }
+  document.querySelectorAll('.cta[data-tier]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal(a.dataset.tier);
+    });
+  });
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
